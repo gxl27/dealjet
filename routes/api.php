@@ -11,11 +11,12 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('/webhook/deal', function (Request $request) {
+    dd($request);
     $requestData = $request->all();
     // Log the server name
 
-    $serverName = $request->getHost();
-    Log::info('GET Server Name: ' . $serverName);
+    $ipAddress = $request->ip();
+    Log::info('GET IP CLIENT: ' . $ipAddress);
     // Alternatively, you can log the request data as a JSON string
     Log::info('Request Data: ' . json_encode($requestData));
 
@@ -29,8 +30,8 @@ Route::post('/webhook/deal', function (Request $request) {
     $requestData = $request->all();
     // Log the server name
 
-    $serverName = $request->getHost();
-    Log::info('POST Server Name: ' . $serverName);
+    $ipAddress = $request->ip();
+    Log::info('POST IP CLIENT: ' . $ipAddress);
     // Alternatively, you can log the request data as a JSON string
     Log::info('Request Data: ' . json_encode($requestData));
 
