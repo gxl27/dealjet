@@ -12,18 +12,28 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/webhook/deal', function (Request $request) {
     $requestData = $request->all();
+    // Log the server name
 
-    // Log the request data as an array
-    Log::info('Request Data:', $requestData);
-
+    $serverName = $request->getHost();
+    Log::info('GET Server Name: ' . $serverName);
     // Alternatively, you can log the request data as a JSON string
     Log::info('Request Data: ' . json_encode($requestData));
 
-    $serverName = $request->getHost();
+    return response()->json([
+        'name' => 'Abigail',
+        'state' => 'CA',
+    ]);
+});
 
+Route::post('/webhook/deal', function (Request $request) {
+    $requestData = $request->all();
     // Log the server name
-    Log::info('Server Name: ' . $serverName);
-    
+
+    $serverName = $request->getHost();
+    Log::info('POST Server Name: ' . $serverName);
+    // Alternatively, you can log the request data as a JSON string
+    Log::info('Request Data: ' . json_encode($requestData));
+
     return response()->json([
         'name' => 'Abigail',
         'state' => 'CA',
