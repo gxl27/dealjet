@@ -2,9 +2,16 @@
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Devio\Pipedrive\Pipedrive;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/', function (Request $request){
+    $token = env('PIPEDRIVE_API_TOKEN');
+    $pipedrive = new Pipedrive($token);
+
+});
 
 Route::get('/user', function (Request $request) {
     return $request->user();

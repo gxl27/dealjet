@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\Admin\Source\ProviderSource;
+use App\Services\Admin\Source\PipeDriveSource;
+use App\Services\Admin\Source\WebsiteSource;
+use App\Services\Admin\Source\SalesforceSource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // $this->app->bind(ProviderSource::class, PipeDriveSource::class);
+        // $this->app->bind(ProviderSource::class, WebsiteSource::class);
+        $this->app->bind(ProviderSource::class, SalesforceSource::class);
     }
 }
